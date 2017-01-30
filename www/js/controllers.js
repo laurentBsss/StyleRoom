@@ -30,7 +30,7 @@ angular.module('starter.controllers', [])
  
     $scope.loadImages = function() {
         for(var i = 0; i < 50; i++) {
-            $scope.images.push({id: i, src: "https://unsplash.it/50/50/?random"});
+            $scope.images.push({id: i, src: "https://dummyimage.com/50x50/000/fff"});
         }
     }
   $scope.chat = "";

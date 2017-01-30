@@ -1,1 +1,28 @@
 /* Empty. Add your own CSS if you like */
+.fisrt_bloc_link{
+  padding-top: 30px;
+  padding-bottom: 30px;
+  border: solid green 1px;
+  background-color: #ffa64d;
+}
+
+.second_bloc_link{
+  padding-top: 30px;
+  padding-bottom: 30px;
+  border: solid green 1px;
+  background-color: #0066ff;
+}
+
+.third_bloc_link{
+  padding-top: 30px;
+  padding-bottom: 30px;
+  border: solid green 1px;
+  background-color: #77b300;
+}
+
+.forth_bloc_link{
+  padding-top: 30px;
+  padding-bottom: 30px;
+  border: solid green 1px;
+  background-color: #94b8b8;
+}
