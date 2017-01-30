@@ -21,6 +21,22 @@ angular.module('starter.controllers', [])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
+.controller('MytabCtrl', function($scope) {
+
+
+
+
+    $scope.images = [];
+ 
+    $scope.loadImages = function() {
+        for(var i = 0; i < 50; i++) {
+            $scope.images.push({id: i, src: "https://unsplash.it/50/50/?random"});
+        }
+    }
+  $scope.chat = "";
+})
+
+
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {
     enableFriends: true
