@@ -1,4 +1,9 @@
 /* Empty. Add your own CSS if you like */
+.scroll-content{
+  background: url("../img/basketball.png") #FFA500;
+}
+
+
 .fisrt_bloc_link{
   padding-top: 30px;
   padding-bottom: 30px;
