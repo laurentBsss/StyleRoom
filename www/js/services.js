@@ -50,10 +50,10 @@ angular.module('starter.services', [])
     return {
       destinationType: Camera.DestinationType.FILE_URI,
       sourceType: source,
-      allowEdit: false,
+      allowEdit: true,
       encodingType: Camera.EncodingType.JPEG,
       popoverOptions: CameraPopoverOptions,
-      saveToPhotoAlbum: false
+      saveToPhotoAlbum: true
     };
   }
  
