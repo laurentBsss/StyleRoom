@@ -1,6 +1,21 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope) {})
+.controller('DashCtrl', function($scope) {
+
+//add 5 img to scrollign  view and  presentation
+
+    $scope.images = [];
+ 
+    $scope.loadImages = function() {
+        for(var i = 0; i < 5; i++) {
+            $scope.images.push({id: i, src: "https://dummyimage.com/100x100/000/fff"});
+        }
+    }
+
+
+
+
+})
 
 .controller('ChatsCtrl', function($scope, Chats) {
   // With the new view caching in Ionic, Controllers are only called
@@ -15,6 +30,7 @@ angular.module('starter.controllers', [])
   $scope.remove = function(chat) {
     Chats.remove(chat);
   };
+
 })
 
 
