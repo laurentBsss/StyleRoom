@@ -1,8 +1,6 @@
 <ion-view view-title="Dashboard">
   <ion-content class="padding">
-   <h1>HOME PAGE</h1>
-
-
+  
    <div class="list card">
 
    <div class="row">
@@ -34,27 +32,28 @@
       
     </div>
 
-<!-- 
-	   	<a href="#" class="item item-icon-left assertive">
-	   		<i class="icon ion-android-camera"></i>
-	   		Take Photo
-	   	</a>
-
-	   	<a href="#" class="item item-icon-left">
-	   		<i class="icon ion-images"></i>
-	   		Gallerie
-	   	</a>
-
-	   	<a href="#" class="item item-icon-left assertive">
-	   		<i class="icon ion-settings"></i>
-	   		Settings
-	   	</a>
-
-	   	<a href="#" class="item item-icon-left">
-	   		<i class="icon ion-printer"></i>
-	   		Test
-	   	</a> -->
-
    </div>
-  </ion-content>
+  
+
+
+   <div class="card" ng-init="loadImages()">
+
+
+<!--    <div class="row" ng-repeat="image in images" ng-if="$index % 4 === 0">
+        <div class="col" ng-if="$index < images.length">
+            <img ng-src="{{images[$index].src}}" width="100%" />
+        </div>
+        <div class="col col-25" ng-if="$index + 1 < images.length">
+            <img ng-src="{{images[$index + 1].src}}" width="100%" />
+        </div>
+    </div> -->
+
+    <div class="row responsive-md">
+       <div class="col" ng-repeat="image in images">
+            <img ng-src="{{image.src}}" width="100%" />
+       </div>
+    </div>
+</div>
+
+ </ion-content>
 </ion-view>
