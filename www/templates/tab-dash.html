@@ -51,6 +51,9 @@
     <div class="row responsive-md">
        <div class="col" ng-repeat="image in images">
             <img ng-src="{{image.src}}" width="100%" />
+            <ion-item  class="item-icon-right" nav-clear menu-close href="#/tab/share">
+             Share<i class="icon icon-right ion-chevron-right ion-accessory"></i> 
+            </ion-item>
        </div>
     </div>
 </div>
