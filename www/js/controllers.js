@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope) {
+.controller('DashCtrl', function($scope, $cordovaSocialSharing) {
 
 //add 5 img to scrollign  view and  presentation
 
@@ -10,6 +10,12 @@ angular.module('starter.controllers', [])
         for(var i = 0; i < 5; i++) {
             $scope.images.push({id: i, src: "https://dummyimage.com/100x100/000/fff"});
         }
+    }
+
+    //social sharing test
+     $scope.shareAnywhere = function() {
+      // alert('oui ici social');
+        $cordovaSocialSharing.share("This is your message", "This is your subject", "www/imagefile.png", "https://www.thepolyglotdeveloper.com");
     }
 
 
