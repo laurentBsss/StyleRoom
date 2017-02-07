@@ -14,7 +14,7 @@ angular.module('starter.controllers', [])
 
     //social sharing test
      $scope.shareAnywhere = function() {
-      // alert('oui ici social');
+       alert('oui ici social');
         $cordovaSocialSharing.share("This is your message", "This is your subject", "www/imagefile.png", "https://www.thepolyglotdeveloper.com");
     }
 
