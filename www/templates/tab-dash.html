@@ -51,10 +51,17 @@
     <div class="row responsive-md">
        <div class="col" ng-repeat="image in images">
             <img ng-src="{{image.src}}" width="100%" />
-            <ion-item  class="item-icon-right" nav-clear menu-close  ng-click="shareAnywhere()">
+            <!-- <ion-item  class="item-icon-right" nav-clear menu-close  ng-click="shareAnywhere()">
              Share<i class="icon icon-right ion-chevron-right ion-accessory"></i> 
-            </ion-item>
+            </ion-item> -->
+            <button class="button button-full button-positive" ng-click="shareAnywhere()" >
+              Share <i class="icon ion-paper-airplane"></i>
+            </button>
        </div>
+       <a href="#/tab/chats" class="item item-icon-left second_bloc_link balanced">
+            <i class="icon ion-images"></i>
+            voir plus de photos
+        </a>
     </div>
 </div>
 
