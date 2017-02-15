@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','ngCordova'])
 
-.run(function($ionicPlatform, $ionicPopup) {
+.run(function($ionicPlatform, $ionicPopup,$interval) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -21,20 +21,29 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
       StatusBar.styleDefault();
     }
     //add test network connection
-    
+    function checkConnection() {
      if(window.Connection) {
                 if(navigator.connection.type == Connection.NONE) {
                     $ionicPopup.confirm({
-                        title: "Internet Disconnected",
-                        content: "The internet is disconnected on your device."
+                        title: "No Internet Conection",
+                        content: "The internet is disconnected on your device.Please reconnect and try again"
                     })
                     .then(function(result) {
                         if(!result) {
+                          //faire quitter l app au  bout de 30 s??
                            // ionic.Platform.exitApp();
                         }
                     });
                 }
             }
+        }
+      //tchek connection toute les 7secondes
+      $interval(function(){
+        checkConnection();
+      }, 7000)
+
+
+
     //end test network connection
 
 
