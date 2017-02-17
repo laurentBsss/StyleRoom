@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope, $cordovaSocialSharing) {
+.controller('DashCtrl', function($scope, $cordovaSocialSharing, $cordovaFile, ImageService, FileService ) {
 
 //add 5 img to scrollign  view and  presentation
 
@@ -14,10 +14,19 @@ angular.module('starter.controllers', [])
 
     //social sharing test
      $scope.shareAnywhere = function() {
-       alert('oui ici social');
-        $cordovaSocialSharing.share("This is your message", "This is your subject", "www/imagefile.png", "https://www.thepolyglotdeveloper.com");
+       //alert('oui ici social');
+        $cordovaSocialSharing.share("This is your message", "This is your subject", "www/img/perry.png", "https://dummyimage.com/100x100/000/fff");
     }
 
+    
+   
+    //test recup url du projet
+    $scope.ding = function() {
+
+        //return   "jaaaddauuiiop" ;
+            return      cordova.file.dataDirectory + 'xyz';
+     
+   }
 
 
 

@@ -39,6 +39,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
         }
       //tchek connection toute les 7secondes
       $interval(function(){
+        
         checkConnection();
       }, 7000)
 

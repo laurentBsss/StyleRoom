@@ -34,9 +34,12 @@
 
    </div>
   
+   <!--  <div class="row">
+    
+     <p> {{ ding() }}</p>
+    </div> -->
 
-
-   <div class="card" ng-init="loadImages()">
+   <div class="" ng-init="loadImages()">
 
 
 <!--    <div class="row" ng-repeat="image in images" ng-if="$index % 4 === 0">
@@ -47,21 +50,16 @@
             <img ng-src="{{images[$index + 1].src}}" width="100%" />
         </div>
     </div> -->
-
+    
     <div class="row responsive-md">
-       <div class="col" ng-repeat="image in images">
+       <div class="col card" ng-repeat="image in images">
             <img ng-src="{{image.src}}" width="100%" />
-            <!-- <ion-item  class="item-icon-right" nav-clear menu-close  ng-click="shareAnywhere()">
-             Share<i class="icon icon-right ion-chevron-right ion-accessory"></i> 
-            </ion-item> -->
             <button class="button button-full button-positive" ng-click="shareAnywhere()" >
-              Share <i class="icon ion-paper-airplane"></i>
+              Partager <i class="icon ion-paper-airplane"></i>
             </button>
        </div>
-       <a href="#/tab/chats" class="item item-icon-left second_bloc_link balanced">
-            <i class="icon ion-images"></i>
-            voir plus de photos
-        </a>
+
+ 
     </div>
 </div>
 
