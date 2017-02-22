@@ -28,8 +28,35 @@ angular.module('starter.controllers', [])
      
    }
 
+     $scope.free=function() {
+
+        //return   "jaaaddauuiiop" ;
+            // CHECK
+    // return $cordovaFile.checkFile(cordova.file.dataDirectory, "IMG_20170222_091301.jpg")
+    //   .then(function (success) {
+    //     // success
+    //     alert("img trouvée");
+    //   }, function (error) {
+    //     // error
+    //     alert("img non trouvée");
+    //   });
 
 
+    // CHECK
+    $cordovaFile.checkDir(cordova.file.dataDirectory, "Pictures")
+      .then(function (success) {
+        return success
+      }, function (error) {
+        return error
+      });
+
+
+
+
+     
+   }
+
+   
 })
 
 .controller('ChatsCtrl', function($scope, Chats) {
