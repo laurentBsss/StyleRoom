@@ -5,9 +5,9 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','ngCordova'])
+angular.module('starter', ['ionic','firebase', 'starter.controllers', 'starter.services','ngCordova'])
 
-.run(function($ionicPlatform, $ionicPopup,$interval) {
+.run(function($ionicPlatform, $ionicPopup,$interval, $cordovaFile) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -46,6 +46,37 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
 
 
     //end test network connection
+
+    //test dir existence
+     // CHECK
+     //alert(cordova.file.dataDirectory);
+    $cordovaFile.checkDir(cordova.file.externalRootDirectory, "styleroom")
+      .then(function (success) {
+        // success
+
+
+        alert("exist");
+
+
+      }, function (error) {
+        // error
+        alert("dir n'existe pas");
+      });
+
+
+
+
+      // CREATE
+        $cordovaFile.createDir(cordova.file.externalRootDirectory, "styleroom", false)
+          .then(function (success) {
+            // success
+
+        alert("dossier creé");
+          }, function (error) {
+            // error
+
+        //alert("aurait du creer un dossier");
+          });
 
 
 
@@ -114,6 +145,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
      'tab-share': {
        templateUrl: 'templates/tab-share.html',
         controller: 'ShareCtrl'
+     }
+   }
+ })
+
+  .state('tab.login', {
+   url: '/login',
+   views: {
+     'tab-login': {
+       templateUrl: 'templates/tab-login.html',
+        controller: 'LoginCtrl'
      }
    }
  })
