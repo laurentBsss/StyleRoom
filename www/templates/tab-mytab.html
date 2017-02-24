@@ -1,7 +1,7 @@
 <ion-view view-title="Contact">
 
 
- <ion-content class="padding">
+ <!-- <ion-content class="padding">
 
 
    <div class="card" ng-init="loadImages()">
@@ -21,8 +21,36 @@
             <img ng-src="{{images[$index + 3].src}}" width="100%" />
         </div>
     </div>
+    </div>  
+    <div class="card" ng-init="login()">
+
+     </div>
 
 
- </ion-content>
+ </ion-content> -->
+
+
+<ion-content class="has-header padding">
+  <div class="list">
+    <label class="item item-input">
+      <span class="input-label">Email</span>
+      <input type="text" ng-model="user.email">
+    </label>
+    <label class="item item-input">
+      <span class="input-label">Password</span>
+      <input type="password" ng-model="user.password">
+    </label>
+   
+        <label class="item item-input">   </label>
+          <button class="button button-block button-positive" ng-click="signupEmail(user)">
+            Sign Up
+          </button>
+     
+
+  </div>
+</ion-content>
+
+
+
 
 </ion-view>
