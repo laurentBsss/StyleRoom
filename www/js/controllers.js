@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope, $cordovaSocialSharing, $cordovaFile, ImageService, FileService ) {
+.controller('DashCtrl', function($scope, $cordovaSocialSharing, $cordovaFile, ImageService, FileService,$cordovaCamera ) {
 
 //add 5 img to scrollign  view and  presentation
 
@@ -24,12 +24,16 @@ angular.module('starter.controllers', [])
     $scope.ding = function() {
 
         //return   "jaaaddauuiiop" ;
-            return      cordova.file.dataDirectory + 'xyz';
+           // return      cordova.file.dataDirectory + 'xyz';
+
+            return cordova.file.externalRootDirectory;
      
    }
 
      $scope.free=function() {
-
+      return "hello";
+      //return Camera.PictureSourceType.SAVEDPHOTOALBUM;
+        // alert("library : " + Camera.PictureSourceType.PHOTOLIBRARY);
         //return   "jaaaddauuiiop" ;
             // CHECK
     // return $cordovaFile.checkFile(cordova.file.dataDirectory, "IMG_20170222_091301.jpg")
@@ -43,12 +47,12 @@ angular.module('starter.controllers', [])
 
 
     // CHECK
-    $cordovaFile.checkDir(cordova.file.dataDirectory, "Pictures")
-      .then(function (success) {
-        return success
-      }, function (error) {
-        return error
-      });
+    // $cordovaFile.checkDir(cordova.file.dataDirectory, "Pictures")
+    //   .then(function (success) {
+    //     return "" +success ;
+    //   }, function (error) {
+    //     return "" + error;
+    //   });
 
 
 
@@ -126,18 +130,100 @@ angular.module('starter.controllers', [])
 
 .controller('MytabCtrl', function($scope) {
 
-
-
-
     $scope.images = [];
- 
     $scope.loadImages = function() {
         for(var i = 0; i < 50; i++) {
             $scope.images.push({id: i, src: "https://dummyimage.com/50x50/000/fff"});
         }
     }
   $scope.chat = "";
+
+  // firebase auth create
+  $scope.signupEmail = function(user){  
+     // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCMfUBCO-TSQ0Uv9j2uVt44koL_K2oFQAU",
+        authDomain: "styleroom-a3010.firebaseapp.com",
+        databaseURL: "https://styleroom-a3010.firebaseio.com",
+        storageBucket: "styleroom-a3010.appspot.com",
+        messagingSenderId: "495424637152"
+      };
+      firebase.initializeApp(config);
+ 
+  // var ref = new Firebase("https://styleroom-a3010.firebaseio.com");
+ 
+  // ref.createUser({
+  //     email    : $scope.data.email,
+  //     password : $scope.data.password
+  //   }, function(error, userData) {
+  //     if (error) {
+  //       console.log("Error creating user:", error);
+  //     } else {
+  //       console.log("Successfully created user account with uid:", userData.uid);
+  //     }
+  //   });
+   
+      var  email  = user.email;
+      var password = user.password;
+      console.log("mail:", email);
+      console.log("password:", password);
+
+   firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // ...
+    });
+
+
+ }
+
+
+
+
+
 })
+.controller('LoginCtrl', function($scope) {
+  $scope.signupEmail = function(user){  
+     // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCMfUBCO-TSQ0Uv9j2uVt44koL_K2oFQAU",
+        authDomain: "styleroom-a3010.firebaseapp.com",
+        databaseURL: "https://styleroom-a3010.firebaseio.com",
+        storageBucket: "styleroom-a3010.appspot.com",
+        messagingSenderId: "495424637152"
+      };
+      firebase.initializeApp(config);
+ 
+  // var ref = new Firebase("https://styleroom-a3010.firebaseio.com");
+ 
+  // ref.createUser({
+  //     email    : $scope.data.email,
+  //     password : $scope.data.password
+  //   }, function(error, userData) {
+  //     if (error) {
+  //       console.log("Error creating user:", error);
+  //     } else {
+  //       console.log("Successfully created user account with uid:", userData.uid);
+  //     }
+  //   });
+   
+      var  email  = user.email;
+      var password = user.password;
+      console.log("mail:", email);
+      console.log("password:", password);
+
+   firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // ...
+    });
+
+
+ }
+})
+
 
 
 .controller('AccountCtrl', function($scope) {
