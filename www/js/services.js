@@ -50,7 +50,7 @@ angular.module('starter.services', [])
     return {
       destinationType: Camera.DestinationType.FILE_URI,
       sourceType: source,
-      allowEdit: true,
+      allowEdit: false,
       encodingType: Camera.EncodingType.JPEG,
       popoverOptions: CameraPopoverOptions,
       saveToPhotoAlbum: true
@@ -65,7 +65,7 @@ angular.module('starter.services', [])
         var name = imageUrl.substr(imageUrl.lastIndexOf('/') + 1);
         var namePath = imageUrl.substr(0, imageUrl.lastIndexOf('/') + 1);
         var newName = makeid() + name;
-        $cordovaFile.copyFile(namePath, name, cordova.file.dataDirectory, newName)
+        $cordovaFile.copyFile(namePath, name, cordova.file.dataDirectory+"/style", newName)
           .then(function(info) {
             FileService.storeImage(newName);
             resolve();
