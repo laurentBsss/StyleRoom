@@ -124,11 +124,11 @@ angular.module('starter.controllers', [])
 
 
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
+.controller('ChatDetailCtrl', function($scope, $stateParams, Chats,firebase) {
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('MytabCtrl', function($scope) {
+.controller('MytabCtrl', function($scope,$ionicPopup) {
 
     $scope.images = [];
     $scope.loadImages = function() {
@@ -140,15 +140,28 @@ angular.module('starter.controllers', [])
 
   // firebase auth create
   $scope.signupEmail = function(user){  
-     // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyCMfUBCO-TSQ0Uv9j2uVt44koL_K2oFQAU",
-        authDomain: "styleroom-a3010.firebaseapp.com",
-        databaseURL: "https://styleroom-a3010.firebaseio.com",
-        storageBucket: "styleroom-a3010.appspot.com",
-        messagingSenderId: "495424637152"
-      };
-      firebase.initializeApp(config);
+     //Initialize Firebase
+      // var config = {
+      //   apiKey: "AIzaSyCMfUBCO-TSQ0Uv9j2uVt44koL_K2oFQAU",
+      //   authDomain: "styleroom-a3010.firebaseapp.com",
+      //   databaseURL: "https://styleroom-a3010.firebaseio.com",
+      //   storageBucket: "styleroom-a3010.appspot.com",
+      //   messagingSenderId: "495424637152"
+      // };
+
+      // if (!firebase) {
+      //   if (firebase.app().name != [DEFAULT]) {
+      //    firebase.initializeApp(config);
+      //   }
+     
+      // }
+
+      
+
+      
+    firebase.initializeApp(config);
+      console.log(firebase.app().name);
+      
  
   // var ref = new Firebase("https://styleroom-a3010.firebaseio.com");
  
@@ -163,17 +176,52 @@ angular.module('starter.controllers', [])
   //     }
   //   });
    
+
+
+
       var  email  = user.email;
       var password = user.password;
       console.log("mail:", email);
       console.log("password:", password);
 
-   firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // ...
+   firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then(function(firebaseUser) {
+       // Success 
+            $ionicPopup.alert({
+              title: 'Login Ok ok ok !',
+              template: 'It s good'
+          });
+
+         console.log("user",firebase.auth().currentUser.email);
+
+       }).catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // ...
+           $ionicPopup.alert({
+              title: 'create failed!',
+              template: 'Please check your credentials!'
+          });
     });
+
+    //on affiche le  user
+
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          // User is signed in.
+          email = user.email;
+
+           $ionicPopup.alert({
+                  title: 'Login Ok ok ok !',
+                  template: '' + email
+              });
+        } else {
+          // No user is signed in.
+        }
+      });
+
+
 
 
  }
@@ -193,7 +241,7 @@ angular.module('starter.controllers', [])
         storageBucket: "styleroom-a3010.appspot.com",
         messagingSenderId: "495424637152"
       };
-      firebase.initializeApp(config);
+     // firebase.initializeApp(config);
  
   // var ref = new Firebase("https://styleroom-a3010.firebaseio.com");
  
@@ -213,12 +261,12 @@ angular.module('starter.controllers', [])
       console.log("mail:", email);
       console.log("password:", password);
 
-   firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // ...
-    });
+   // firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+   //    // Handle Errors here.
+   //    var errorCode = error.code;
+   //    var errorMessage = error.message;
+   //    // ...
+   //  });
 
 
  }

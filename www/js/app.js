@@ -80,6 +80,18 @@ angular.module('starter', ['ionic','firebase', 'starter.controllers', 'starter.s
 
 
 
+           // Initialize Firebase
+      // var config = {
+      //   apiKey: "AIzaSyCMfUBCO-TSQ0Uv9j2uVt44koL_K2oFQAU",
+      //   authDomain: "styleroom-a3010.firebaseapp.com",
+      //   databaseURL: "https://styleroom-a3010.firebaseio.com",
+      //   storageBucket: "styleroom-a3010.appspot.com",
+      //   messagingSenderId: "495424637152"
+      // };
+      // firebase.initializeApp(config);
+
+
+
   });
 })
 
