@@ -188,8 +188,8 @@ angular.module('starter.controllers', [])
       .then(function(firebaseUser) {
        // Success 
             $ionicPopup.alert({
-              title: 'Login Ok ok ok !',
-              template: 'It s good'
+              title: "l'utilisateur a bien été créé",
+              template: 'redirection en cours'
           });
 
          console.log("user",firebase.auth().currentUser.email);
@@ -234,13 +234,13 @@ angular.module('starter.controllers', [])
 .controller('LoginCtrl', function($scope) {
   $scope.signupEmail = function(user){  
      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyCMfUBCO-TSQ0Uv9j2uVt44koL_K2oFQAU",
-        authDomain: "styleroom-a3010.firebaseapp.com",
-        databaseURL: "https://styleroom-a3010.firebaseio.com",
-        storageBucket: "styleroom-a3010.appspot.com",
-        messagingSenderId: "495424637152"
-      };
+      // var config = {
+      //   apiKey: "AIzaSyCMfUBCO-TSQ0Uv9j2uVt44koL_K2oFQAU",
+      //   authDomain: "styleroom-a3010.firebaseapp.com",
+      //   databaseURL: "https://styleroom-a3010.firebaseio.com",
+      //   storageBucket: "styleroom-a3010.appspot.com",
+      //   messagingSenderId: "495424637152"
+      // };
      // firebase.initializeApp(config);
  
   // var ref = new Firebase("https://styleroom-a3010.firebaseio.com");
