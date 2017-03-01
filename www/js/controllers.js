@@ -213,7 +213,7 @@ angular.module('starter.controllers', [])
           email = user.email;
 
            $ionicPopup.alert({
-                  title: 'Login Ok ok ok !',
+                  title: 'Create login Ok ok ok !',
                   template: '' + email
               });
         } else {
@@ -231,7 +231,7 @@ angular.module('starter.controllers', [])
 
 
 })
-.controller('LoginCtrl', function($scope) {
+.controller('LoginCtrl', function($scope,$ionicPopup) {
   $scope.signupEmail = function(user){  
      // Initialize Firebase
       // var config = {
@@ -241,7 +241,7 @@ angular.module('starter.controllers', [])
       //   storageBucket: "styleroom-a3010.appspot.com",
       //   messagingSenderId: "495424637152"
       // };
-     // firebase.initializeApp(config);
+      firebase.initializeApp(config);
  
   // var ref = new Firebase("https://styleroom-a3010.firebaseio.com");
  
@@ -261,15 +261,54 @@ angular.module('starter.controllers', [])
       console.log("mail:", email);
       console.log("password:", password);
 
-   // firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-   //    // Handle Errors here.
-   //    var errorCode = error.code;
-   //    var errorMessage = error.message;
-   //    // ...
-   //  });
+   firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // ...
+    }).catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // ...
+           $ionicPopup.alert({
+              title: 'login failed!',
+              template: 'Please check your credentials!'
+          });
+    });
+    //fin  auth
+
+
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          // User is signed in.
+          email = user.email;
+
+           $ionicPopup.alert({
+                  title: 'login réussit !',
+                  template: '' + email
+              });
+           $scope.showmyuser = true;
+        } else {
+          // No user is signed in.
+          $scope.showmyuser = false;
+        }
+      });
+
 
 
  }
+
+ $scope.logOut = function(){ 
+
+  firebase.auth().signOut().then(function() {
+      // Sign-out successful.
+    }, function(error) {
+      // An error happened.
+    });
+ 
+ }
+
 })
 
 
