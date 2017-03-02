@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ionic', 'ui.router'])
 
 .controller('DashCtrl', function($scope, $cordovaSocialSharing, $cordovaFile, ImageService, FileService,$cordovaCamera ) {
 
@@ -231,7 +231,7 @@ angular.module('starter.controllers', [])
 
 
 })
-.controller('LoginCtrl', function($scope,$ionicPopup) {
+.controller('LoginCtrl', function($scope,$ionicPopup,$state) {
   $scope.signupEmail = function(user){  
      // Initialize Firebase
       // var config = {
@@ -242,19 +242,6 @@ angular.module('starter.controllers', [])
       //   messagingSenderId: "495424637152"
       // };
       firebase.initializeApp(config);
- 
-  // var ref = new Firebase("https://styleroom-a3010.firebaseio.com");
- 
-  // ref.createUser({
-  //     email    : $scope.data.email,
-  //     password : $scope.data.password
-  //   }, function(error, userData) {
-  //     if (error) {
-  //       console.log("Error creating user:", error);
-  //     } else {
-  //       console.log("Successfully created user account with uid:", userData.uid);
-  //     }
-  //   });
    
       var  email  = user.email;
       var password = user.password;
@@ -289,11 +276,17 @@ angular.module('starter.controllers', [])
                   template: '' + email
               });
            $scope.showmyuser = true;
+           $scope.nouser = false;
+
+           $state.go('tab.dash');
         } else {
           // No user is signed in.
           $scope.showmyuser = false;
+          $scope.nouser = true;
         }
       });
+
+      $scope.nouser = true;
 
 
 
@@ -303,8 +296,10 @@ angular.module('starter.controllers', [])
 
   firebase.auth().signOut().then(function() {
       // Sign-out successful.
+      console.log('Signed Out');
     }, function(error) {
       // An error happened.
+      console.error('Sign Out Error', error);
     });
  
  }
