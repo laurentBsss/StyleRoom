@@ -426,6 +426,7 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
 
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {
-    enableFriends: true
+    enableFriends: true,
+    enableTest: true
   };
 });
