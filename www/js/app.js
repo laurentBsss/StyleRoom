@@ -43,8 +43,19 @@ angular.module('starter', ['ionic','firebase', 'starter.controllers', 'starter.s
         checkConnection();
       }, 7000)
 
+  //alert('uregntttt test');
+  //test firebase ini
+  // var config = {
+  //       apiKey: "AIzaSyCMfUBCO-TSQ0Uv9j2uVt44koL_K2oFQAU",
+  //       authDomain: "styleroom-a3010.firebaseapp.com",
+  //       databaseURL: "https://styleroom-a3010.firebaseio.com",
+  //       storageBucket: "styleroom-a3010.appspot.com",
+  //       messagingSenderId: "495424637152"
+  //     };
+  //     firebase.initializeApp(config);
 
-
+      ////end test firebase init
+    
     //end test network connection
 
     //test dir existence
