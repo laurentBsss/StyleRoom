@@ -141,26 +141,25 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
   // firebase auth create
   $scope.signupEmail = function(user){  
      //Initialize Firebase
-      // var config = {
-      //   apiKey: "AIzaSyCMfUBCO-TSQ0Uv9j2uVt44koL_K2oFQAU",
-      //   authDomain: "styleroom-a3010.firebaseapp.com",
-      //   databaseURL: "https://styleroom-a3010.firebaseio.com",
-      //   storageBucket: "styleroom-a3010.appspot.com",
-      //   messagingSenderId: "495424637152"
-      // };
-
-      // if (!firebase) {
-      //   if (firebase.app().name != [DEFAULT]) {
-      //    firebase.initializeApp(config);
-      //   }
+      var config = {
+        apiKey: "AIzaSyCMfUBCO-TSQ0Uv9j2uVt44koL_K2oFQAU",
+        authDomain: "styleroom-a3010.firebaseapp.com",
+        databaseURL: "https://styleroom-a3010.firebaseio.com",
+        storageBucket: "styleroom-a3010.appspot.com",
+        messagingSenderId: "495424637152"
+      };
+      
+    //firebase.initializeApp(config);
      
-      // }
 
-      
+      try {
+  //firebase.app().name;
+   firebase.initializeApp(config);
+    console.log(firebase.app().name);
+}catch (e){
+   console.log('erreur firebase', e);
 
-      
-    firebase.initializeApp(config);
-      console.log(firebase.app().name);
+}
       
  
   // var ref = new Firebase("https://styleroom-a3010.firebaseio.com");
@@ -234,19 +233,38 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
 .controller('LoginCtrl', function($scope,$ionicPopup,$state) {
   $scope.signupEmail = function(user){  
      // Initialize Firebase
-      // var config = {
-      //   apiKey: "AIzaSyCMfUBCO-TSQ0Uv9j2uVt44koL_K2oFQAU",
-      //   authDomain: "styleroom-a3010.firebaseapp.com",
-      //   databaseURL: "https://styleroom-a3010.firebaseio.com",
-      //   storageBucket: "styleroom-a3010.appspot.com",
-      //   messagingSenderId: "495424637152"
-      // };
-      firebase.initializeApp(config);
+      var config = {
+        apiKey: "AIzaSyCMfUBCO-TSQ0Uv9j2uVt44koL_K2oFQAU",
+        authDomain: "styleroom-a3010.firebaseapp.com",
+        databaseURL: "https://styleroom-a3010.firebaseio.com",
+        storageBucket: "styleroom-a3010.appspot.com",
+        messagingSenderId: "495424637152"
+      };
+      //firebase.initializeApp(config);
+
+    try {
+      //firebase.app().name;
+       firebase.initializeApp(config);
+    }catch (e){
+       console.log('erreur firebase', e);
+
+    }
+
+
    
       var  email  = user.email;
       var password = user.password;
       console.log("mail:", email);
       console.log("password:", password);
+
+      var tst = (firebase.app().name == '[DEFAULT]');
+      var tst2 = typeof firebase.app().name ;
+
+      console.log(firebase.app());  // "[DEFAULT]"
+      //console.log(firebase.app() == "[DEFAULT]");
+
+       console.log('fir name',firebase.app().name);
+       console.log('fir name 2 ',tst);
 
    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
       // Handle Errors here.
@@ -305,8 +323,25 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
  }
 
 //login  facebook
- $scope.loginFacebook = function($ionicPopup){ 
-    firebase.initializeApp(config);
+ $scope.loginFacebook = function($ionicPopup){
+ // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCMfUBCO-TSQ0Uv9j2uVt44koL_K2oFQAU",
+        authDomain: "styleroom-a3010.firebaseapp.com",
+        databaseURL: "https://styleroom-a3010.firebaseio.com",
+        storageBucket: "styleroom-a3010.appspot.com",
+        messagingSenderId: "495424637152"
+      }; 
+   // firebase.initializeApp(config);
+
+     try {
+      //firebase.app().name;
+       firebase.initializeApp(config);
+    }catch (e){
+       console.log('erreur firebase', e);
+
+    }
+
     var provider = new firebase.auth.FacebookAuthProvider();
     firebase.auth().signInWithPopup(provider).then(function(result) {
       // This gives you a Facebook Access Token. You can use it to access the Facebook API.
@@ -334,6 +369,56 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
 
  } 
  //fin login fb
+
+ //login  google
+ $scope.loginGoogle = function($ionicPopup){ 
+  // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCMfUBCO-TSQ0Uv9j2uVt44koL_K2oFQAU",
+        authDomain: "styleroom-a3010.firebaseapp.com",
+        databaseURL: "https://styleroom-a3010.firebaseio.com",
+        storageBucket: "styleroom-a3010.appspot.com",
+        messagingSenderId: "495424637152"
+      };
+    //firebase.initializeApp(config);
+
+     try {
+      //firebase.app().name;
+       firebase.initializeApp(config);
+    }catch (e){
+       console.log('erreur firebase', e);
+
+    }
+
+    var provider = new firebase.auth.GoogleAuthProvider();
+
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+      // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+      var token = result.credential.accessToken;
+      console.log('le token',token);
+      // The signed-in user info.
+      var user = result.user;
+      // ...
+      $ionicPopup.alert({
+              title: 'login google reussit !',
+              template: 'social login google opéééé'
+          });
+
+
+    }).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+      console.log('error',errorCode);
+      // ...
+  });
+
+ } 
+ //fin login google
 
 })
 
