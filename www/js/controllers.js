@@ -150,33 +150,13 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
       };
       
     //firebase.initializeApp(config);
-     
-
       try {
-  //firebase.app().name;
-   firebase.initializeApp(config);
-    console.log(firebase.app().name);
-}catch (e){
-   console.log('erreur firebase', e);
-
-}
-      
- 
-  // var ref = new Firebase("https://styleroom-a3010.firebaseio.com");
- 
-  // ref.createUser({
-  //     email    : $scope.data.email,
-  //     password : $scope.data.password
-  //   }, function(error, userData) {
-  //     if (error) {
-  //       console.log("Error creating user:", error);
-  //     } else {
-  //       console.log("Successfully created user account with uid:", userData.uid);
-  //     }
-  //   });
-   
-
-
+        //firebase.app().name;
+        firebase.initializeApp(config);
+        console.log(firebase.app().name);
+      }catch (e){
+         console.log('erreur firebase', e);
+      }
 
       var  email  = user.email;
       var password = user.password;
@@ -220,13 +200,7 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
         }
       });
 
-
-
-
  }
-
-
-
 
 
 })
@@ -250,8 +224,6 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
 
     }
 
-
-   
       var  email  = user.email;
       var password = user.password;
       console.log("mail:", email);
@@ -281,8 +253,7 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
               template: 'Please check your credentials!'
           });
     });
-    //fin  auth
-
+    //fin  auth mail
 
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
@@ -306,8 +277,6 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
 
       $scope.nouser = true;
 
-
-
  }
 
  $scope.logOut = function(){ 
@@ -318,6 +287,10 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
     }, function(error) {
       // An error happened.
       console.error('Sign Out Error', error);
+      $ionicPopup.alert({
+              title: 'error !!!',
+              template: 'an error just come out...'
+          });
     });
  
  }
@@ -349,7 +322,7 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
       console.log('le token',token);
       // The signed-in user info.
       var user = result.user;
-      // ...
+      // the popup alert
       $ionicPopup.alert({
               title: 'login facebook reussit !',
               template: 'social login opéééé'
@@ -364,7 +337,11 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
       var email = error.email;
       // The firebase.auth.AuthCredential type that was used.
       var credential = error.credential;
-      // ...
+
+      $ionicPopup.alert({
+              title: 'login failed!',
+              template: 'Please check your credentials!'
+          });
   });
 
  } 
@@ -414,6 +391,10 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
       // The firebase.auth.AuthCredential type that was used.
       var credential = error.credential;
       console.log('error',errorCode);
+      $ionicPopup.alert({
+              title: 'login failed!',
+              template: 'Please check your credentials!'
+          });
       // ...
   });
 
@@ -457,7 +438,11 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
       }, function(error) {
         // An error happened.
       console.log('error : ',error);
-      alert('utilisateur non trouvé', emailAddress);
+      $ionicPopup.alert({
+              title: 'utilisateur non trouvé !',
+              template: emailAddress
+          });
+      
       });
 
   }//fin reset password
