@@ -230,7 +230,7 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
 
 
 })
-.controller('LoginCtrl', function($scope,$ionicPopup,$state) {
+.controller('LoginCtrl', function($scope,$ionicPopup,$state,$ionicModal) {
   $scope.signupEmail = function(user){  
      // Initialize Firebase
       var config = {
@@ -420,9 +420,49 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
  } 
  //fin login google
 
+  $ionicModal.fromTemplateUrl('my-modal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+
+  $scope.resetPassword = function(user) {
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCMfUBCO-TSQ0Uv9j2uVt44koL_K2oFQAU",
+        authDomain: "styleroom-a3010.firebaseapp.com",
+        databaseURL: "https://styleroom-a3010.firebaseio.com",
+        storageBucket: "styleroom-a3010.appspot.com",
+        messagingSenderId: "495424637152"
+      };
+    //firebase.initializeApp(config);
+
+     try {
+        //firebase.app().name;
+         firebase.initializeApp(config);
+      }catch (e){
+         console.log('erreur firebase reset pass :', e);
+
+      }
+
+      var auth = firebase.auth();
+      var emailAddress = user.email;
+      //console.log($scope);
+      console.log('email send :', emailAddress);
+
+      auth.sendPasswordResetEmail(emailAddress).then(function() {
+        // Email sent.
+        console.log('l email a été envoyé');
+      }, function(error) {
+        // An error happened.
+      console.log('error : ',error);
+      alert('utilisateur non trouvé', emailAddress);
+      });
+
+  }//fin reset password
+
 })
-
-
 
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {

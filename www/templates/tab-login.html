@@ -48,30 +48,57 @@
       <input type="password" ng-model="user.password">
     </label>
    
-        
-          <button class="button button-block button-positive" ng-click="signupEmail(user)">
+    <button class="button button-block button-clear button-energized text-center" ng-click="modal.show()">
+         mot de passe oublié ??
+    </button>  
+           
+    <button class="button button-block button-positive" ng-click="signupEmail(user)">
             Sign Up
-          </button>
-     
+    </button>           
 
-  </div>
-  
 
-    
-  <div class="row">
+
   
-          <button class="button button-block button-energized" ng-click="logOut()">
+      <button class="button button-block button-energized" ng-click="logOut()">
             Se deconnecter
-          </button>
+      </button>
+
+
+      <div class="row">
+        <h1 ng-show="showmyuser"> bonjour cher  user
+          
+        </h1>
+        <h1 ng-show="nouser"> pas d'utilisateur connecté  
+        </h1>
+      </div>
   </div>
 
-  <div class="row">
-    <h1 ng-show="showmyuser"> bonjour cher  user
-      
-    </h1>
-    <h1 ng-show="nouser"> pas d'utilisateur connecté  
-    </h1>
-  </div>
+
+  <script id="my-modal.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-positive">
+      <h1 class="title">Mot de passe oublié</h1>
+      <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
+       
+    </ion-header-bar>
+    <ion-content class="padding">
+      <div class="card">
+        <div class="item item-text-wrap">
+          Veuillez rentrer votre email, un lien de réinitialisation vous sera envoyé à cette adresse
+        </div>
+      </div>
+      <div class="list">
+            <label class="item item-input">
+              <span class="input-label">Email</span>
+              <input ng-model="user.email" type="text">
+            </label>
+            <button class="button button-full button-positive" ng-click="resetPassword(user)">Reset</button>
+      </div>
+    </ion-content>
+  </ion-modal-view>
+</script>
+
+
 </ion-content>
 
 
