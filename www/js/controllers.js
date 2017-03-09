@@ -408,6 +408,17 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
     $scope.modal = modal;
   });
 
+ //action on  modal
+  $scope.$on('modal.hidden', function() {
+        //$scope.modal.remove();
+       // alert('modal fermé');
+        //$scope.modal.hide();
+      });
+  //Cleanup the modal when we're done with it!
+   $scope.$on('$destroy', function() {
+      //$scope.modal.remove();
+   });
+
   $scope.resetPassword = function(user) {
       // Initialize Firebase
       var config = {
@@ -435,6 +446,15 @@ angular.module('starter.controllers', ['ionic', 'ui.router'])
       auth.sendPasswordResetEmail(emailAddress).then(function() {
         // Email sent.
         console.log('l email a été envoyé');
+        $ionicPopup.alert({
+              title: 'l email a été envoyé à l adresse : ',
+              template: emailAddress
+          });
+       //le  hide pose un  pb de gestion donglet pr le moment
+       // $scope.modal.hide();
+       // $scope.modal.remove();
+       // $scope.modal = null;
+
       }, function(error) {
         // An error happened.
       console.log('error : ',error);
